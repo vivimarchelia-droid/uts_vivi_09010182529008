@@ -17,32 +17,85 @@
         <!-- Navbar -->
         <nav class="bg-white border-b border-gray-200">
 
-            <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="max-w-7xl mx-auto px-6 py-4">
 
-                <a href="{{ route('dashboard') }}"
-                   class="text-xl font-bold text-gray-800">
-                    📚 Perpustakaan Vivi
-                </a>
+                <div class="flex justify-between items-center">
 
-                <div class="flex items-center gap-4">
+                    <!-- Logo -->
+                    <a href="{{ route('dashboard') }}"
+                       class="text-xl font-bold text-gray-800">
 
-                    <span class="text-sm text-gray-600">
-                        {{ auth()->user()->name }}
-                    </span>
+                        📚 Perpustakaan Vivi
 
-                    <form method="POST" action="{{ route('logout') }}">
+                    </a>
 
-                        @csrf
 
-                        <button
-                            type="submit"
-                            class="bg-gray-800 text-white px-4 py-2 rounded-lg hover:bg-gray-700">
+                    <!-- Menu -->
+                    <div class="flex items-center gap-6">
 
-                            Logout
+                        <!-- Dashboard -->
+                        <a
+                            href="{{ route('dashboard') }}"
+                            class="text-sm font-medium
+                            {{ request()->routeIs('dashboard')
+                                ? 'text-blue-600'
+                                : 'text-gray-600 hover:text-blue-600' }}">
 
-                        </button>
+                            Dashboard
 
-                    </form>
+                        </a>
+
+
+                        <!-- Buku -->
+                        <a
+                            href="{{ route('books.index') }}"
+                            class="text-sm font-medium
+                            {{ request()->routeIs('books.*')
+                                ? 'text-blue-600'
+                                : 'text-gray-600 hover:text-blue-600' }}">
+
+                            Buku
+
+                        </a>
+
+
+                        <!-- Kategori -->
+                        <a
+                            href="{{ route('categories.index') }}"
+                            class="text-sm font-medium
+                            {{ request()->routeIs('categories.*')
+                                ? 'text-blue-600'
+                                : 'text-gray-600 hover:text-blue-600' }}">
+
+                            Kategori
+
+                        </a>
+
+
+                        <!-- Nama User -->
+                        <span class="text-sm text-gray-600 border-l pl-6">
+
+                            {{ auth()->user()->name }}
+
+                        </span>
+
+
+                        <!-- Logout -->
+                        <form method="POST" action="{{ route('logout') }}">
+
+                            @csrf
+
+                            <button
+                                type="submit"
+                                class="bg-gray-800 text-white px-4 py-2 rounded-lg hover:bg-gray-700">
+
+                                Logout
+
+                            </button>
+
+                        </form>
+
+                    </div>
 
                 </div>
 
@@ -58,11 +111,15 @@
             <div class="mb-8">
 
                 <h2 class="text-3xl font-bold text-gray-800">
+
                     Dashboard
+
                 </h2>
 
                 <p class="text-gray-600 mt-1">
+
                     Selamat datang di Sistem Informasi Perpustakaan Vivi.
+
                 </p>
 
             </div>
@@ -80,17 +137,23 @@
                         <div>
 
                             <p class="text-gray-500 text-sm">
+
                                 Total Buku
+
                             </p>
 
                             <p class="text-3xl font-bold text-blue-600 mt-2">
+
                                 {{ $totalBooks }}
+
                             </p>
 
                         </div>
 
                         <div class="text-4xl">
+
                             📚
+
                         </div>
 
                     </div>
@@ -106,17 +169,23 @@
                         <div>
 
                             <p class="text-gray-500 text-sm">
+
                                 Total Kategori
+
                             </p>
 
                             <p class="text-3xl font-bold text-green-600 mt-2">
+
                                 {{ $totalCategories }}
+
                             </p>
 
                         </div>
 
                         <div class="text-4xl">
+
                             🗂️
+
                         </div>
 
                     </div>
@@ -132,17 +201,23 @@
                         <div>
 
                             <p class="text-gray-500 text-sm">
+
                                 Total Stok
+
                             </p>
 
                             <p class="text-3xl font-bold text-purple-600 mt-2">
+
                                 {{ $totalStock }}
+
                             </p>
 
                         </div>
 
                         <div class="text-4xl">
+
                             📦
+
                         </div>
 
                     </div>
@@ -160,14 +235,19 @@
                     <div>
 
                         <h3 class="text-xl font-bold text-gray-800">
+
                             Buku Terbaru
+
                         </h3>
 
                         <p class="text-sm text-gray-500 mt-1">
+
                             Daftar buku yang terakhir ditambahkan.
+
                         </p>
 
                     </div>
+
 
                     <a
                         href="{{ route('books.index') }}"
@@ -224,27 +304,39 @@
                                 <tr class="hover:bg-gray-50">
 
                                     <td class="px-5 py-4">
+
                                         {{ $loop->iteration }}
+
                                     </td>
 
                                     <td class="px-5 py-4 font-semibold">
+
                                         {{ $book->title }}
+
                                     </td>
 
                                     <td class="px-5 py-4">
+
                                         {{ $book->category->name }}
+
                                     </td>
 
                                     <td class="px-5 py-4">
+
                                         {{ $book->author }}
+
                                     </td>
 
                                     <td class="px-5 py-4">
+
                                         {{ $book->year }}
+
                                     </td>
 
                                     <td class="px-5 py-4">
+
                                         {{ $book->stock }}
+
                                     </td>
 
                                 </tr>

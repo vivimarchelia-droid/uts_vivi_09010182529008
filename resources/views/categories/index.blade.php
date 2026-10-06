@@ -14,54 +14,16 @@
 
     <div class="min-h-screen">
 
-        <!-- Navbar -->
-        <nav class="bg-white border-b border-gray-200">
+        {{-- Navbar --}}
+        <x-library-navbar />
 
-            <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-
-                <a
-                    href="{{ route('dashboard') }}"
-                    class="text-xl font-bold text-gray-800">
-
-                    📚 Perpustakaan Vivi
-
-                </a>
-
-                <div class="flex items-center gap-4">
-
-                    <span class="text-sm text-gray-600">
-                        {{ auth()->user()->name }}
-                    </span>
-
-                    <form method="POST" action="{{ route('logout') }}">
-
-                        @csrf
-
-                        <button
-                            type="submit"
-                            class="bg-gray-800 text-white px-4 py-2 rounded-lg hover:bg-gray-700">
-
-                            Logout
-
-                        </button>
-
-                    </form>
-
-                </div>
-
-            </div>
-
-        </nav>
-
-
-        <!-- Content -->
+        {{-- Content --}}
         <main class="max-w-7xl mx-auto px-6 py-8">
 
-            <!-- Header -->
+            {{-- Header --}}
             <div class="flex justify-between items-center mb-6">
 
                 <div>
-
                     <h2 class="text-2xl font-bold text-gray-800">
                         Daftar Kategori
                     </h2>
@@ -69,9 +31,7 @@
                     <p class="text-gray-600 mt-1">
                         Kelola kategori buku perpustakaan.
                     </p>
-
                 </div>
-
 
                 <a
                     href="{{ route('categories.create') }}"
@@ -83,8 +43,7 @@
 
             </div>
 
-
-            <!-- Success Message -->
+            {{-- Success Message --}}
             @if(session('success'))
 
                 <div class="bg-green-100 text-green-700 px-4 py-3 rounded-lg mb-5">
@@ -95,8 +54,7 @@
 
             @endif
 
-
-            <!-- Table -->
+            {{-- Table --}}
             <div class="bg-white shadow rounded-lg overflow-hidden">
 
                 <div class="overflow-x-auto">
@@ -131,7 +89,6 @@
 
                         </thead>
 
-
                         <tbody class="divide-y divide-gray-200">
 
                             @forelse($categories as $category)
@@ -142,16 +99,13 @@
                                         {{ $loop->iteration }}
                                     </td>
 
-
                                     <td class="px-5 py-4 font-semibold">
                                         {{ $category->name }}
                                     </td>
 
-
                                     <td class="px-5 py-4">
                                         {{ $category->description ?? '-' }}
                                     </td>
-
 
                                     <td class="px-5 py-4">
 
@@ -162,7 +116,6 @@
                                         </span>
 
                                     </td>
-
 
                                     <td class="px-5 py-4">
 
@@ -176,7 +129,6 @@
 
                                             </a>
 
-
                                             <a
                                                 href="{{ route('categories.edit', $category) }}"
                                                 class="text-yellow-600 hover:underline">
@@ -185,14 +137,12 @@
 
                                             </a>
 
-
                                             <form
                                                 method="POST"
                                                 action="{{ route('categories.destroy', $category) }}"
                                                 onsubmit="return confirm('Yakin ingin menghapus kategori ini?');">
 
                                                 @csrf
-
                                                 @method('DELETE')
 
                                                 <button
